@@ -159,6 +159,7 @@ func ImplantConfigFromProtobuf(pbConfig *clientpb.ImplantConfig) (string, *model
 	cfg.MaxConnectionErrors = pbConfig.MaxConnectionErrors
 	cfg.PollInterval = pbConfig.PollInterval
 
+	cfg.LimitSingleInstance = pbConfig.LimitSingleInstance
 	cfg.LimitDomainJoined = pbConfig.LimitDomainJoined
 	cfg.LimitDatetime = pbConfig.LimitDatetime
 	cfg.LimitUsername = pbConfig.LimitUsername

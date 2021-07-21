@@ -238,6 +238,7 @@ func parseCompileFlags(ctx *grumble.Context, con *console.SliverConsoleClient) *
 	pollInterval := ctx.Flags.Int("poll")
 	maxConnectionErrors := ctx.Flags.Int("max-errors")
 
+	limitSingleInstance := ctx.Flags.Bool("limit-singleinstance")
 	limitDomainJoined := ctx.Flags.Bool("limit-domainjoined")
 	limitHostname := ctx.Flags.String("limit-hostname")
 	limitUsername := ctx.Flags.String("limit-username")
@@ -312,11 +313,12 @@ func parseCompileFlags(ctx *grumble.Context, con *console.SliverConsoleClient) *
 		PollInterval:        uint32(pollInterval),
 		MaxConnectionErrors: uint32(maxConnectionErrors),
 
-		LimitDomainJoined: limitDomainJoined,
-		LimitHostname:     limitHostname,
-		LimitUsername:     limitUsername,
-		LimitDatetime:     limitDatetime,
-		LimitFileExists:   limitFileExists,
+		LimitSingleInstance: limitSingleInstance,
+		LimitDomainJoined:   limitDomainJoined,
+		LimitHostname:       limitHostname,
+		LimitUsername:       limitUsername,
+		LimitDatetime:       limitDatetime,
+		LimitFileExists:     limitFileExists,
 
 		Format:      configFormat,
 		IsSharedLib: isSharedLib,
@@ -502,7 +504,7 @@ func parseTCPPivotc2(args string) []*clientpb.ImplantC2 {
 func compile(config *clientpb.ImplantConfig, save string, con *console.SliverConsoleClient) (*commonpb.File, error) {
 
 	con.PrintInfof("Generating new %s/%s implant binary\n", config.GOOS, config.GOARCH)
-
+	con.PrintInfof("LimitSingleInstance %v\n", config.LimitSingleInstance)
 	if config.ObfuscateSymbols {
 		con.PrintInfof("%sSymbol obfuscation is enabled%s\n", console.Bold, console.Normal)
 	} else if !config.Debug {
@@ -549,6 +551,9 @@ func getLimitsString(config *clientpb.ImplantConfig) string {
 	limits := []string{}
 	if config.LimitDatetime != "" {
 		limits = append(limits, fmt.Sprintf("datetime=%s", config.LimitDatetime))
+	}
+	if config.LimitSingleInstance {
+		limits = append(limits, fmt.Sprintf("singleinstance=%v", config.LimitSingleInstance))
 	}
 	if config.LimitDomainJoined {
 		limits = append(limits, fmt.Sprintf("domainjoined=%v", config.LimitDomainJoined))

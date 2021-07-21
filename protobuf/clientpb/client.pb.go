@@ -676,18 +676,19 @@ type ImplantConfig struct {
 	MaxConnectionErrors uint32 `protobuf:"varint,9,opt,name=MaxConnectionErrors,proto3" json:"MaxConnectionErrors,omitempty"`
 	PollInterval        uint32 `protobuf:"varint,38,opt,name=PollInterval,proto3" json:"PollInterval,omitempty"`
 	// c2
-	C2                []*ImplantC2 `protobuf:"bytes,10,rep,name=C2,proto3" json:"C2,omitempty"`
-	CanaryDomains     []string     `protobuf:"bytes,11,rep,name=CanaryDomains,proto3" json:"CanaryDomains,omitempty"`
-	LimitDomainJoined bool         `protobuf:"varint,20,opt,name=LimitDomainJoined,proto3" json:"LimitDomainJoined,omitempty"`
-	LimitDatetime     string       `protobuf:"bytes,21,opt,name=LimitDatetime,proto3" json:"LimitDatetime,omitempty"`
-	LimitHostname     string       `protobuf:"bytes,22,opt,name=LimitHostname,proto3" json:"LimitHostname,omitempty"`
-	LimitUsername     string       `protobuf:"bytes,23,opt,name=LimitUsername,proto3" json:"LimitUsername,omitempty"`
-	LimitFileExists   string       `protobuf:"bytes,32,opt,name=LimitFileExists,proto3" json:"LimitFileExists,omitempty"`
-	Format            OutputFormat `protobuf:"varint,25,opt,name=Format,proto3,enum=clientpb.OutputFormat" json:"Format,omitempty"`
-	IsSharedLib       bool         `protobuf:"varint,26,opt,name=IsSharedLib,proto3" json:"IsSharedLib,omitempty"`
-	FileName          string       `protobuf:"bytes,27,opt,name=FileName,proto3" json:"FileName,omitempty"`
-	IsService         bool         `protobuf:"varint,28,opt,name=IsService,proto3" json:"IsService,omitempty"`
-	IsShellcode       bool         `protobuf:"varint,29,opt,name=IsShellcode,proto3" json:"IsShellcode,omitempty"`
+	C2                  []*ImplantC2 `protobuf:"bytes,10,rep,name=C2,proto3" json:"C2,omitempty"`
+	CanaryDomains       []string     `protobuf:"bytes,11,rep,name=CanaryDomains,proto3" json:"CanaryDomains,omitempty"`
+	LimitSingleInstance bool         `protobuf:"varint,20,opt,name=LimitSingleInstance,proto3" json:"LimitSingleInstance,omitempty"`
+	LimitDomainJoined   bool         `protobuf:"varint,20,opt,name=LimitDomainJoined,proto3" json:"LimitDomainJoined,omitempty"`
+	LimitDatetime       string       `protobuf:"bytes,21,opt,name=LimitDatetime,proto3" json:"LimitDatetime,omitempty"`
+	LimitHostname       string       `protobuf:"bytes,22,opt,name=LimitHostname,proto3" json:"LimitHostname,omitempty"`
+	LimitUsername       string       `protobuf:"bytes,23,opt,name=LimitUsername,proto3" json:"LimitUsername,omitempty"`
+	LimitFileExists     string       `protobuf:"bytes,32,opt,name=LimitFileExists,proto3" json:"LimitFileExists,omitempty"`
+	Format              OutputFormat `protobuf:"varint,25,opt,name=Format,proto3,enum=clientpb.OutputFormat" json:"Format,omitempty"`
+	IsSharedLib         bool         `protobuf:"varint,26,opt,name=IsSharedLib,proto3" json:"IsSharedLib,omitempty"`
+	FileName            string       `protobuf:"bytes,27,opt,name=FileName,proto3" json:"FileName,omitempty"`
+	IsService           bool         `protobuf:"varint,28,opt,name=IsService,proto3" json:"IsService,omitempty"`
+	IsShellcode         bool         `protobuf:"varint,29,opt,name=IsShellcode,proto3" json:"IsShellcode,omitempty"`
 }
 
 func (x *ImplantConfig) Reset() {
@@ -858,6 +859,13 @@ func (x *ImplantConfig) GetCanaryDomains() []string {
 func (x *ImplantConfig) GetLimitDomainJoined() bool {
 	if x != nil {
 		return x.LimitDomainJoined
+	}
+	return false
+}
+
+func (x *ImplantConfig) GetLimitSingleInstance() bool {
+	if x != nil {
+		return x.LimitSingleInstance
 	}
 	return false
 }

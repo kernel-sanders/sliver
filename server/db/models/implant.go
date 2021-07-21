@@ -97,11 +97,12 @@ type ImplantConfig struct {
 	TCPPivotc2Enabled bool
 
 	// Limits
-	LimitDomainJoined bool
-	LimitHostname     string
-	LimitUsername     string
-	LimitDatetime     string
-	LimitFileExists   string
+	LimitSingleInstance bool
+	LimitDomainJoined   bool
+	LimitHostname       string
+	LimitUsername       string
+	LimitDatetime       string
+	LimitFileExists     string
 
 	// Output Format
 	Format clientpb.OutputFormat
@@ -141,11 +142,12 @@ func (ic *ImplantConfig) ToProtobuf() *clientpb.ImplantConfig {
 		PollInterval:        ic.PollInterval,
 		MaxConnectionErrors: ic.MaxConnectionErrors,
 
-		LimitDatetime:     ic.LimitDatetime,
-		LimitDomainJoined: ic.LimitDomainJoined,
-		LimitHostname:     ic.LimitHostname,
-		LimitUsername:     ic.LimitUsername,
-		LimitFileExists:   ic.LimitFileExists,
+		LimitDatetime:       ic.LimitDatetime,
+		LimitSingleInstance: ic.LimitSingleInstance,
+		LimitDomainJoined:   ic.LimitDomainJoined,
+		LimitHostname:       ic.LimitHostname,
+		LimitUsername:       ic.LimitUsername,
+		LimitFileExists:     ic.LimitFileExists,
 
 		IsSharedLib:       ic.IsSharedLib,
 		IsService:         ic.IsService,

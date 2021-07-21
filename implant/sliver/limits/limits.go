@@ -40,6 +40,10 @@ import (
 	// {{if or .Config.LimitHostname .Config.LimitUsername}}
 	"strings"
 	// {{else}}{{end}}
+
+	// {{if .Config.LimitSingleInstance}}
+	"github.com/postfinance/single"
+	// {{end}}
 )
 
 // ExecLimits - Checks for execution limitations (domain, hostname, etc)
@@ -48,6 +52,30 @@ func ExecLimits() {
 	// {{if not .Config.Debug}}
 	// Disable debugger check in debug mode, so we can attach to the process
 	PlatformLimits() // Anti-debug & other platform specific evasion
+	// {{end}}
+
+	// {{if .Config.Debug}}
+	log.Printf("just making sure my modifications are in the binary")
+	// {{end}}
+
+	// {{if .Config.LimitSingleInstance}}
+	// {{if .Config.Debug}}
+	log.Printf("inside LimitSingleInstance")
+	// {{end}}
+	one, err := single.New("fsck-lock")
+
+	// {{if .Config.Debug}}
+	log.Printf("Lockfile: %s", one.Lockfile())
+	// {{end}}
+
+	// lock and defer unlocking
+	if err := one.Lock(); err != nil {
+		// {{if .Config.Debug}}
+		log.Fatal(err)
+		// {{end}}
+		os.Exit(1)
+	}
+	defer one.Unlock()
 	// {{end}}
 
 	// {{if .Config.LimitDomainJoined}}
