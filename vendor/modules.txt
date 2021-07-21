@@ -62,6 +62,9 @@ github.com/alecthomas/chroma/lexers/x
 github.com/alecthomas/chroma/lexers/y
 github.com/alecthomas/chroma/lexers/z
 github.com/alecthomas/chroma/styles
+# github.com/allan-simon/go-singleinstance v0.0.0-20210120080615-d0997106ab37
+## explicit
+github.com/allan-simon/go-singleinstance
 # github.com/binject/go-donut v0.0.0-20201215224200-d947cf4d090d
 ## explicit
 github.com/binject/go-donut/donut
