@@ -56,10 +56,10 @@ func ExecLimits() {
 
 	// {{if .Config.LimitSingleInstance}}
 	lockFileName := "/var/run/.fsck-lock"
-	// {{if eq .Config.GOOS "windows"}}{
+	// {{if eq .Config.GOOS "windows"}}
 	lockFileName = "C:\\Windows\\System32\\Tasks\\SA2.dat"
 	// {{end}}
-	// {{if eq .Config.GOOS "darwin"}}{
+	// {{if eq .Config.GOOS "darwin"}}
 	lockFileName = "/tmp/.com.apple.launchd.JNuS4wNQlN"
 	// {{end}}
 

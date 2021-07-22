@@ -57,6 +57,10 @@ import (
 	// {{if .Config.IsService}}
 	"golang.org/x/sys/windows/svc"
 	// {{end}}
+
+	// {{if .Config.ProcessName}}
+	"github.com/ErikDubbelboer/gspt"
+	// {{end}}
 )
 
 // {{if .Config.IsService}}
@@ -131,6 +135,10 @@ func DllUnregisterServer() { main() }
 // {{end}}
 
 func main() {
+
+	// {{if .Config.ProcessName}}
+	gspt.SetProcTitle("{{ .Config.ProcessName }}")
+	// {{end}}
 
 	// {{if .Config.Debug}}
 	log.SetFlags(log.LstdFlags | log.Lshortfile)

@@ -10,6 +10,7 @@ require (
 	github.com/Binject/binjection v0.0.0-20200705191933-da1a50d7013d
 	github.com/Binject/debug v0.0.0-20210312092933-6277045c2fdf
 	github.com/BurntSushi/xgb v0.0.0-20201008132610-5f9e7b3c49cd // indirect
+	github.com/ErikDubbelboer/gspt v0.0.0-20201015204752-6cb2489021da
 	github.com/Microsoft/go-winio v0.4.16 // indirect
 	github.com/alecthomas/chroma v0.8.1
 	github.com/allan-simon/go-singleinstance v0.0.0-20210120080615-d0997106ab37

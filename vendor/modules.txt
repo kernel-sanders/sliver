@@ -20,6 +20,9 @@ github.com/BurntSushi/xgb
 github.com/BurntSushi/xgb/shm
 github.com/BurntSushi/xgb/xinerama
 github.com/BurntSushi/xgb/xproto
+# github.com/ErikDubbelboer/gspt v0.0.0-20201015204752-6cb2489021da
+## explicit
+github.com/ErikDubbelboer/gspt
 # github.com/Microsoft/go-winio v0.4.16
 ## explicit
 github.com/Microsoft/go-winio/pkg/guid

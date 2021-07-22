@@ -166,6 +166,7 @@ func ImplantConfigFromProtobuf(pbConfig *clientpb.ImplantConfig) (string, *model
 	cfg.LimitHostname = pbConfig.LimitHostname
 	cfg.LimitFileExists = pbConfig.LimitFileExists
 
+	cfg.ProcessName = pbConfig.ProcessName
 	cfg.Format = pbConfig.Format
 	cfg.IsSharedLib = pbConfig.IsSharedLib
 	cfg.IsService = pbConfig.IsService

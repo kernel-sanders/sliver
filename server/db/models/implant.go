@@ -104,6 +104,9 @@ type ImplantConfig struct {
 	LimitDatetime       string
 	LimitFileExists     string
 
+	// ProcessName (linux only)
+	ProcessName string
+
 	// Output Format
 	Format clientpb.OutputFormat
 
@@ -149,6 +152,7 @@ func (ic *ImplantConfig) ToProtobuf() *clientpb.ImplantConfig {
 		LimitUsername:       ic.LimitUsername,
 		LimitFileExists:     ic.LimitFileExists,
 
+		ProcessName:       ic.ProcessName,
 		IsSharedLib:       ic.IsSharedLib,
 		IsService:         ic.IsService,
 		IsShellcode:       ic.IsShellcode,

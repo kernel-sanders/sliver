@@ -803,6 +803,8 @@ func BindCommands(con *console.SliverConsoleClient) {
 			f.String("z", "limit-hostname", "", "limit execution to specified hostname")
 			f.String("F", "limit-fileexists", "", "limit execution to hosts with this file in the filesystem")
 
+			f.String("", "processname", "", "process name to run as (linux/mac only)")
+
 			f.String("f", "format", "exe", "Specifies the output formats, valid values are: 'exe', 'shared' (for dynamic libraries), 'service' (see `psexec` for more info) and 'shellcode' (windows only)")
 
 			f.String("s", "save", "", "directory/file to the binary to")
@@ -944,6 +946,8 @@ func BindCommands(con *console.SliverConsoleClient) {
 			f.String("y", "limit-username", "", "limit execution to specified username")
 			f.String("z", "limit-hostname", "", "limit execution to specified hostname")
 			f.String("F", "limit-fileexists", "", "limit execution to hosts with this file in the filesystem")
+
+			f.String("", "processname", "", "process name to run as (linux/mac only)")
 
 			f.String("f", "format", "exe", "Specifies the output formats, valid values are: 'exe', 'shared' (for dynamic libraries), 'service' (see `psexec` for more info) and 'shellcode' (windows only)")
 

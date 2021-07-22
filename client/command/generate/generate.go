@@ -244,6 +244,7 @@ func parseCompileFlags(ctx *grumble.Context, con *console.SliverConsoleClient) *
 	limitUsername := ctx.Flags.String("limit-username")
 	limitDatetime := ctx.Flags.String("limit-datetime")
 	limitFileExists := ctx.Flags.String("limit-fileexists")
+	processName := ctx.Flags.String("processname")
 
 	isSharedLib := false
 	isService := false
@@ -283,6 +284,11 @@ func parseCompileFlags(ctx *grumble.Context, con *console.SliverConsoleClient) *
 	if !checkBuildTargetCompatibility(configFormat, targetOS, targetArch, con) {
 		return nil
 	}
+	// Ensure the processname option is only used on linux/darwin
+	if targetOS == "windows" && ctx.Flags.String("processname") != "" {
+		con.Printf("⚠️  You can not set the process name on Windows")
+		return nil
+	}
 
 	var tunIP net.IP
 	if wg := ctx.Flags.String("wg"); wg != "" {
@@ -320,6 +326,7 @@ func parseCompileFlags(ctx *grumble.Context, con *console.SliverConsoleClient) *
 		LimitDatetime:       limitDatetime,
 		LimitFileExists:     limitFileExists,
 
+		ProcessName: processName,
 		Format:      configFormat,
 		IsSharedLib: isSharedLib,
 		IsService:   isService,
