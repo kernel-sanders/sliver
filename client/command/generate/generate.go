@@ -504,7 +504,6 @@ func parseTCPPivotc2(args string) []*clientpb.ImplantC2 {
 func compile(config *clientpb.ImplantConfig, save string, con *console.SliverConsoleClient) (*commonpb.File, error) {
 
 	con.PrintInfof("Generating new %s/%s implant binary\n", config.GOOS, config.GOARCH)
-	con.PrintInfof("LimitSingleInstance %v\n", config.LimitSingleInstance)
 	if config.ObfuscateSymbols {
 		con.PrintInfof("%sSymbol obfuscation is enabled%s\n", console.Bold, console.Normal)
 	} else if !config.Debug {
