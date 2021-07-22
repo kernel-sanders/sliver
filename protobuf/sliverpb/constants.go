@@ -1,7 +1,7 @@
 package sliverpb
 
 import (
-	proto "github.com/golang/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 )
 
 /*
@@ -20,9 +20,23 @@ import (
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
 
-// Message Name Constants
+------------------------------------------------------------------------------------
+
+
+    ██     ██  █████  ██████  ███    ██ ██ ███    ██  ██████
+    ██     ██ ██   ██ ██   ██ ████   ██ ██ ████   ██ ██
+    ██  █  ██ ███████ ██████  ██ ██  ██ ██ ██ ██  ██ ██   ███
+    ██ ███ ██ ██   ██ ██   ██ ██  ██ ██ ██ ██  ██ ██ ██    ██
+     ███ ███  ██   ██ ██   ██ ██   ████ ██ ██   ████  ██████
+
+	!!! The order of constants is APPEND ONLY !!!
+
+	If you insert values into this file it is very important that you only append the
+	order of the constants. If you do not you will break backwards compatibility with
+	implants.
+
+*/
 
 const (
 
